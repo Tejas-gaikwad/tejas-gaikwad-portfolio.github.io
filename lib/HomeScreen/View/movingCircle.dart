@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'dart:math' as math;
 
@@ -50,7 +51,7 @@ class _MovingCircleState extends State<MovingCircle>
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: widget.color1,
+                  color: Colors.transparent,
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
@@ -69,7 +70,7 @@ class _MovingCircleState extends State<MovingCircle>
               ),
               Container(
                 decoration: BoxDecoration(
-                  color: widget.color2,
+                  color: Colors.transparent,
                   boxShadow: [
                     BoxShadow(
                       offset: Offset(0.0, 100.0),

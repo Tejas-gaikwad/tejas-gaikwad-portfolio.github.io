@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:my_app/HomeScreen/View/middleCircularRectangleSection.dart';
 
+import 'centerText.dart';
 import 'glassmorphism.dart';
 import 'movingCircle.dart';
 
@@ -56,14 +57,16 @@ class _HomeScreenState extends State<HomeScreen>
                   color2: Color(0XFFCE5700),
                 )),
             const GlassMorphismWidget(),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                // height: animation.value,
-                // width: animation.value,
-                child: MiddleCircularRectangleSection(),
-              ),
-            ),
+            // Align(
+            //   alignment: Alignment.topCenter,
+            //   child: Container(
+            //     // height: animation.value,
+            //     // width: animation.value,
+            //     child: Image.asset("assets/github.png"),
+            //   ),
+            // ),
+            // MiddleCircularRectangleSection()
+            CenterText()
             // TweenAnimationBuilder(
             //   duration: Duration(seconds: 5),
             //   curve: Curves.bounceOut,
@@ -77,33 +80,35 @@ class _HomeScreenState extends State<HomeScreen>
             //     );
             //   },
             // ),
-            TweenAnimationBuilder<double>(
-              tween: Tween(begin: 10.0, end: 100.0),
-              duration: Duration(seconds: 3),
-              curve: Curves.easeIn,
-              // child: widget.child,
-              builder: (context, value, child) {
-                return Transform.translate(
-                  offset:
-                      // widget.axis == Axis.horizontal
-                      //     ? Offset(value * widget.offset, 0.0)
-                      //     :
-                      Offset(0.0, 30.0),
-                  child: Container(
-                    // margin: const EdgeInsets.all(100.0),
-                    color: Colors.green,
-                    height: 100,
-                    width: 100,
-                  ),
-                );
-              },
-            )
+            // TweenAnimationBuilder<double>(
+            //   tween: Tween(begin: 10.0, end: 100.0),
+            //   duration: Duration(seconds: 3),
+            //   curve: Curves.easeIn,
+            //   // child: widget.child,
+            //   builder: (context, value, child) {
+            //     return Transform.translate(
+            //       offset:
+            //           // widget.axis == Axis.horizontal
+            //           //     ? Offset(value * widget.offset, 0.0)
+            //           //     :
+            //           Offset(0.0, 30.0),
+            //       child: Container(
+            //         // margin: const EdgeInsets.all(100.0),
+            //         color: Colors.green,
+            //         height: 100,
+            //         width: 100,
+            //       ),
+            //     );
+            //   },
+            // )
           ],
         ),
       ),
     );
   }
 }
+
+
 
 // Stack(
 //           children: [
