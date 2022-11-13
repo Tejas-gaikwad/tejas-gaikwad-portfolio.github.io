@@ -16,13 +16,31 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
+  late Animation animation;
+  late AnimationController animationController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 2));
+    animation = Tween(begin: 0.0, end: 200.0).animate(animationController)
+      ..addListener(() {
+        setState(() {});
+      });
+
+    animationController.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0XFF111010),
       body: Center(
         child: Stack(
-          children: const [
+          children: [
             Positioned(
                 left: 80,
                 top: 40,
@@ -39,17 +57,53 @@ class _HomeScreenState extends State<HomeScreen>
                 )),
             const GlassMorphismWidget(),
             Align(
-                alignment: Alignment.topCenter,
-                child: MiddleCircularRectangleSection()),
+              alignment: Alignment.topCenter,
+              child: Container(
+                // height: animation.value,
+                // width: animation.value,
+                child: MiddleCircularRectangleSection(),
+              ),
+            ),
+            // TweenAnimationBuilder(
+            //   duration: Duration(seconds: 5),
+            //   curve: Curves.bounceOut,
+            //   tween: Tween<double>(begin: 10.0, end: 100.0),
+            //   builder: (context, value, child) {
+            //     return Container(
+            //       margin: const EdgeInsets.all(100.0),
+            //       color: Colors.green,
+            //       height: 100,
+            //       width: 100,
+            //     );
+            //   },
+            // ),
+            TweenAnimationBuilder<double>(
+              tween: Tween(begin: 10.0, end: 100.0),
+              duration: Duration(seconds: 3),
+              curve: Curves.easeIn,
+              // child: widget.child,
+              builder: (context, value, child) {
+                return Transform.translate(
+                  offset:
+                      // widget.axis == Axis.horizontal
+                      //     ? Offset(value * widget.offset, 0.0)
+                      //     :
+                      Offset(0.0, 30.0),
+                  child: Container(
+                    // margin: const EdgeInsets.all(100.0),
+                    color: Colors.green,
+                    height: 100,
+                    width: 100,
+                  ),
+                );
+              },
+            )
           ],
         ),
       ),
     );
   }
 }
-
-
-
 
 // Stack(
 //           children: [
