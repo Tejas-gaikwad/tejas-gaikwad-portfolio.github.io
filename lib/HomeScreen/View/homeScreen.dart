@@ -3,7 +3,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:my_app/HomeScreen/View/middleCircularRectangleSection.dart';
+import 'package:my_app/HomeScreen/View/rowOfLinks.dart';
+import 'package:my_app/HomeScreen/View/technologies.dart';
 
+import '../../Constants/onHover.dart';
 import 'centerText.dart';
 import 'glassmorphism.dart';
 import 'movingCircle.dart';
@@ -39,69 +42,91 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0XFF111010),
-      body: Center(
-        child: Stack(
-          children: [
-            Positioned(
-                left: 80,
-                top: 40,
-                child: MovingCircle(
-                  color1: Color(0XFF000AFF),
-                  color2: Color(0XFFFF00D6),
-                )),
-            Positioned(
-                right: 10,
-                top: 150,
-                child: MovingCircle(
-                  color1: Color(0XFFC8F029),
-                  color2: Color(0XFFCE5700),
-                )),
-            const GlassMorphismWidget(),
-            // Align(
-            //   alignment: Alignment.topCenter,
-            //   child: Container(
-            //     // height: animation.value,
-            //     // width: animation.value,
-            //     child: Image.asset("assets/github.png"),
-            //   ),
-            // ),
-            // MiddleCircularRectangleSection()
-            CenterText()
-            // TweenAnimationBuilder(
-            //   duration: Duration(seconds: 5),
-            //   curve: Curves.bounceOut,
-            //   tween: Tween<double>(begin: 10.0, end: 100.0),
-            //   builder: (context, value, child) {
-            //     return Container(
-            //       margin: const EdgeInsets.all(100.0),
-            //       color: Colors.green,
-            //       height: 100,
-            //       width: 100,
-            //     );
-            //   },
-            // ),
-            // TweenAnimationBuilder<double>(
-            //   tween: Tween(begin: 10.0, end: 100.0),
-            //   duration: Duration(seconds: 3),
-            //   curve: Curves.easeIn,
-            //   // child: widget.child,
-            //   builder: (context, value, child) {
-            //     return Transform.translate(
-            //       offset:
-            //           // widget.axis == Axis.horizontal
-            //           //     ? Offset(value * widget.offset, 0.0)
-            //           //     :
-            //           Offset(0.0, 30.0),
-            //       child: Container(
-            //         // margin: const EdgeInsets.all(100.0),
-            //         color: Colors.green,
-            //         height: 100,
-            //         width: 100,
-            //       ),
-            //     );
-            //   },
-            // )
-          ],
+      body: SingleChildScrollView(
+        child: Container(
+          color: Colors.pink,
+          height: MediaQuery.of(context).size.height * 2,
+          child: Stack(
+            // alignment: Alignment.center,
+            children: [
+              Positioned(
+                  left: 0,
+                  top: 10,
+                  child: MovingCircle(
+                    color1: Color(0XFF000AFF),
+                    color2: Color(0XFFFF00D6),
+                  )),
+              Positioned(
+                  right: 10,
+                  top: 150,
+                  child: MovingCircle(
+                    color1: Color(0XFFC8F029),
+                    color2: Color(0XFFCE5700),
+                  )),
+              GlassMorphismWidget(),
+              // OnHover(),
+
+              // Align(
+              //   alignment: Alignment.topCenter,
+              //   child: Container(
+              //     // height: animation.value,
+              //     // width: animation.value,
+              //     child: Image.asset("assets/github.png"),
+              //   ),
+              // ),
+              // MiddleCircularRectangleSection()
+              Positioned.fill(
+                  top: 250,
+                  // left: MediaQuery.of(context).size.width,
+                  child: CenterText()),
+              // Positioned(
+              //   top: 500,
+              //   child: Container(
+              //       color: Colors.greenAccent,
+              //       height: MediaQuery.of(context).size.height * 10,
+              //       child: Technologies()),
+              // )
+              // TweenAnimationBuilder(
+              //   duration: Duration(seconds: 5),
+              //   curve: Curves.bounceOut,
+              //   tween: Tween<double>(begin: 10.0, end: 100.0),
+              //   builder: (context, value, child) {
+              //     return Container(
+              //       margin: const EdgeInsets.all(100.0),
+              //       color: Colors.green,
+              //       height: 100,
+              //       width: 100,
+              //     );
+              //   },
+              // ),
+              // TweenAnimationBuilder<double>(
+              //   tween: Tween(begin: 10.0, end: 100.0),
+              //   duration: Duration(seconds: 3),
+              //   curve: Curves.easeIn,
+              //   // child: widget.child,
+              //   builder: (context, value, child) {
+              //     return Transform.translate(
+              //       offset:
+              //           // widget.axis == Axis.horizontal
+              //           //     ? Offset(value * widget.offset, 0.0)
+              //           //     :
+              //           Offset(0.0, 30.0),
+              //       child: Container(
+              //         // margin: const EdgeInsets.all(100.0),
+              //         color: Colors.green,
+              //         height: 100,
+              //         width: 100,
+              //       ),
+              //     );
+              //   },
+              // )
+
+              Positioned.fill(
+                top: 800,
+                child: Technologies(),
+              )
+            ],
+          ),
         ),
       ),
     );
