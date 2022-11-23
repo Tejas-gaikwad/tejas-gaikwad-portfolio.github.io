@@ -114,14 +114,16 @@ class _RowCardState extends State<RowCard> {
                 width: isHover ? 80 : 10,
                 decoration: const BoxDecoration(
                     color: Colors.red,
-                    gradient: LinearGradient(colors: [
-                      Colors.red,
-                      Colors.yellow,
-                      Colors.green,
-                      Colors.pinkAccent,
-                      Colors.purple,
-                      Colors.blue,
-                    ])),
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.red,
+                        Colors.yellow,
+                        Colors.green,
+                        Colors.pinkAccent,
+                        Colors.purple,
+                        Colors.blue,
+                      ],
+                    )),
               )
             ],
           ),
