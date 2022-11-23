@@ -9,6 +9,7 @@ import 'package:my_app/HomeScreen/View/technologies.dart';
 
 import '../../Constants/onHover.dart';
 import 'centerText.dart';
+import 'contact_and_myself.dart';
 import 'glassmorphism.dart';
 import 'movingCircle.dart';
 
@@ -45,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen>
       backgroundColor: const Color(0XFF111010),
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height * 2,
+          height: MediaQuery.of(context).size.height * 2.8,
           child: Stack(
             children: [
               Positioned(
@@ -81,6 +82,19 @@ class _HomeScreenState extends State<HomeScreen>
               Positioned.fill(
                 top: 1300,
                 child: Projects(),
+              ),
+              Positioned.fill(
+                top: 1900,
+                child: Contact(),
+              ),
+              Positioned.fill(
+                top: 2650,
+                left: 10,
+                child: Text(
+                  "Made in flutter",
+                  style: TextStyle(
+                      color: Colors.white.withOpacity(0.2), fontSize: 20),
+                ),
               )
             ],
           ),

@@ -10,6 +10,12 @@ class Projects extends StatefulWidget {
 }
 
 class _ProjectsState extends State<Projects> {
+  List projectsName = [
+    "Instagram clone using Flutter and Firebase",
+    "Amazon clone using Flutter and NodeJs",
+    "Drawing App in flutter",
+    "Advanced to-do application",
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,11 +37,13 @@ class _ProjectsState extends State<Projects> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              RowCard(),
-              SizedBox(width: 20),
-              RowCard(),
-              SizedBox(width: 20),
-              RowCard(),
+              RowCard(projectName: projectsName[0]),
+              SizedBox(width: 40),
+              RowCard(projectName: projectsName[1]),
+              SizedBox(width: 40),
+              RowCard(projectName: projectsName[2]),
+              SizedBox(width: 40),
+              RowCard(projectName: projectsName[3]),
             ],
           ),
         ],
@@ -46,7 +54,8 @@ class _ProjectsState extends State<Projects> {
 
 class RowCard extends StatefulWidget {
   final onTap;
-  RowCard({super.key, this.onTap});
+  final projectName;
+  RowCard({super.key, this.onTap, this.projectName});
 
   @override
   State<RowCard> createState() => _RowCardState();
@@ -71,11 +80,13 @@ class _RowCardState extends State<RowCard> {
       child: InkWell(
         onTap: widget.onTap,
         child: AnimatedContainer(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
           margin: EdgeInsets.only(top: isHover ? 0 : 10),
           duration: Duration(milliseconds: 200),
           height: MediaQuery.of(context).size.height / 3,
           width: MediaQuery.of(context).size.width / 7,
           decoration: BoxDecoration(
+            // color: Colors.red,
             // border: Border.all(color: Colors.greenAccent, width: 1.5),
             borderRadius: BorderRadius.circular(4.0),
             gradient: LinearGradient(
@@ -83,47 +94,63 @@ class _RowCardState extends State<RowCard> {
               end: Alignment.bottomRight,
               colors: [
                 Colors.white.withOpacity(0.2),
-                Colors.white.withOpacity(isHover ? 0.25 : 0.15),
+                Colors.white.withOpacity(isHover ? 0.30 : 0.20),
               ],
             ),
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                height: MediaQuery.of(context).size.height / 4,
-                decoration: BoxDecoration(
-                  // color: Colors.grey,
-                  borderRadius: BorderRadius.circular(2.0),
-                ),
-                child: Column(
-                  children: [
-                    Image.asset(
-                      "assets/firebase.png",
-                      height: 150,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 10),
+                    height: MediaQuery.of(context).size.height / 6,
+                    decoration: BoxDecoration(
+                      // color: Colors.grey,
+                      borderRadius: BorderRadius.circular(2.0),
                     ),
-                    SizedBox(height: 20),
-                    Text("Tejas gaikwad")
-                  ],
-                ),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Image.asset(
+                        "assets/firebase.png",
+                        height: MediaQuery.of(context).size.height / 7,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    widget.projectName,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ],
               ),
-              AnimatedContainer(
-                duration: Duration(milliseconds: 300),
-                height: 5,
-                width: isHover ? 80 : 10,
-                decoration: const BoxDecoration(
-                    color: Colors.red,
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.red,
-                        Colors.yellow,
-                        Colors.green,
-                        Colors.pinkAccent,
-                        Colors.purple,
-                        Colors.blue,
-                      ],
-                    )),
+              SizedBox(height: 20),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  height: 5,
+                  width: isHover ? 80 : 10,
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                    colors: [
+                      Colors.red,
+                      Colors.yellow,
+                      Colors.green,
+                      Colors.pinkAccent,
+                      Colors.purple,
+                      Colors.blue,
+                    ],
+                  )),
+                ),
               )
             ],
           ),
