@@ -60,6 +60,7 @@ class _OnHoverState extends State<OnHover> {
           duration: Duration(milliseconds: 200),
           child: Image.asset(
             widget.textImage,
+            color: Colors.white,
             height: 30,
             width: 30,
           ),

@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:my_app/HomeScreen/View/middleCircularRectangleSection.dart';
+import 'package:my_app/HomeScreen/View/projects.dart';
 import 'package:my_app/HomeScreen/View/rowOfLinks.dart';
 import 'package:my_app/HomeScreen/View/technologies.dart';
 
@@ -29,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen>
     super.initState();
 
     animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
+        AnimationController(vsync: this, duration: const Duration(seconds: 2));
     animation = Tween(begin: 0.0, end: 200.0).animate(animationController)
       ..addListener(() {
         setState(() {});
@@ -44,10 +45,8 @@ class _HomeScreenState extends State<HomeScreen>
       backgroundColor: const Color(0XFF111010),
       body: SingleChildScrollView(
         child: Container(
-          color: Colors.pink,
           height: MediaQuery.of(context).size.height * 2,
           child: Stack(
-            // alignment: Alignment.center,
             children: [
               Positioned(
                   left: 0,
@@ -57,6 +56,13 @@ class _HomeScreenState extends State<HomeScreen>
                     color2: Color(0XFFFF00D6),
                   )),
               Positioned(
+                  left: 500,
+                  top: 1100,
+                  child: MovingCircle(
+                    color1: Color.fromARGB(255, 132, 183, 14),
+                    color2: Color.fromARGB(255, 238, 5, 133),
+                  )),
+              Positioned(
                   right: 10,
                   top: 150,
                   child: MovingCircle(
@@ -64,66 +70,17 @@ class _HomeScreenState extends State<HomeScreen>
                     color2: Color(0XFFCE5700),
                   )),
               GlassMorphismWidget(),
-              // OnHover(),
-
-              // Align(
-              //   alignment: Alignment.topCenter,
-              //   child: Container(
-              //     // height: animation.value,
-              //     // width: animation.value,
-              //     child: Image.asset("assets/github.png"),
-              //   ),
-              // ),
-              // MiddleCircularRectangleSection()
               Positioned.fill(
-                  top: 250,
-                  // left: MediaQuery.of(context).size.width,
-                  child: CenterText()),
-              // Positioned(
-              //   top: 500,
-              //   child: Container(
-              //       color: Colors.greenAccent,
-              //       height: MediaQuery.of(context).size.height * 10,
-              //       child: Technologies()),
-              // )
-              // TweenAnimationBuilder(
-              //   duration: Duration(seconds: 5),
-              //   curve: Curves.bounceOut,
-              //   tween: Tween<double>(begin: 10.0, end: 100.0),
-              //   builder: (context, value, child) {
-              //     return Container(
-              //       margin: const EdgeInsets.all(100.0),
-              //       color: Colors.green,
-              //       height: 100,
-              //       width: 100,
-              //     );
-              //   },
-              // ),
-              // TweenAnimationBuilder<double>(
-              //   tween: Tween(begin: 10.0, end: 100.0),
-              //   duration: Duration(seconds: 3),
-              //   curve: Curves.easeIn,
-              //   // child: widget.child,
-              //   builder: (context, value, child) {
-              //     return Transform.translate(
-              //       offset:
-              //           // widget.axis == Axis.horizontal
-              //           //     ? Offset(value * widget.offset, 0.0)
-              //           //     :
-              //           Offset(0.0, 30.0),
-              //       child: Container(
-              //         // margin: const EdgeInsets.all(100.0),
-              //         color: Colors.green,
-              //         height: 100,
-              //         width: 100,
-              //       ),
-              //     );
-              //   },
-              // )
-
+                top: 250,
+                child: CenterText(),
+              ),
               Positioned.fill(
-                top: 800,
+                top: 850,
                 child: Technologies(),
+              ),
+              Positioned.fill(
+                top: 1300,
+                child: Projects(),
               )
             ],
           ),
@@ -132,60 +89,3 @@ class _HomeScreenState extends State<HomeScreen>
     );
   }
 }
-
-
-
-// Stack(
-//           children: [
-//             Container(
-//               child: Row(
-//                 children: [
-//                   // SlideTransition(
-//                   //   // position: _animationVertical,
-//                   //   child: Container(
-//                   //     decoration: const BoxDecoration(
-//                   //       color: Color(0XFF7007F4),
-//                   //       shape: BoxShape.circle,
-//                   //     ),
-//                   //     height: MediaQuery.of(context).size.height * 0.3,
-//                   //     width: MediaQuery.of(context).size.width * 0.3,
-//                   //   ),
-//                   // ),
-//                   // SlideTransition(
-//                   //   position: _animationVertical2,
-//                   //   child: Container(
-//                   //     height: MediaQuery.of(context).size.height * 0.3,
-//                   //     width: MediaQuery.of(context).size.width * 0.3,
-//                   //     decoration: const BoxDecoration(
-//                   //       color: Color(0XFF0BE7F5),
-//                   //       shape: BoxShape.circle,
-//                   //     ),
-//                   //   ),
-//                   // ),
-//                   // SlideTransition(
-//                   //   position: _animationVertical3,
-//                   //   child: Container(
-//                   //     decoration: const BoxDecoration(
-//                   //       color: Color(0XFF7007F4),
-//                   //       shape: BoxShape.circle,
-//                   //     ),
-//                   //     height: MediaQuery.of(context).size.height * 0.3,
-//                   //     width: MediaQuery.of(context).size.width * 0.3,
-//                   //   ),
-//                   // ),
-//                 ],
-//               ),
-//             ),
-
-//             /// 1st section ends here............
-
-//             Align(
-//               alignment: Alignment.center,
-//               child: Container(
-//                 height: MediaQuery.of(context).size.height * 0.6,
-//                 width: MediaQuery.of(context).size.width * 0.6,
-//                 color: Colors.greenAccent,
-//               ),
-//             )
-//           ],
-//         ),

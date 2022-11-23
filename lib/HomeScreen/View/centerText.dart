@@ -11,8 +11,29 @@ class CenterText extends StatefulWidget {
   State<CenterText> createState() => _CenterTextState();
 }
 
-class _CenterTextState extends State<CenterText> {
+class _CenterTextState extends State<CenterText>
+    with SingleTickerProviderStateMixin {
   bool isHover = false;
+
+  late Animation<Offset> _animation1;
+  late Animation<Offset> _animation2;
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 800));
+    _animation1 = Tween<Offset>(
+            begin: const Offset(-0.06, 0.0), end: const Offset(0.0, 0.0))
+        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeIn));
+    _animation2 = Tween<Offset>(
+            begin: const Offset(0.06, 0.0), end: const Offset(0.0, 0.0))
+        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeIn));
+    _controller.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,42 +50,48 @@ class _CenterTextState extends State<CenterText> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  GradientText(
-                    "Tejas ",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: "Pressstart",
-                      fontSize: 60,
-                      fontWeight: FontWeight.bold,
+                  SlideTransition(
+                    position: _animation1,
+                    child: GradientText(
+                      "Tejas ",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "Pressstart",
+                        fontSize: 70,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      gradient: LinearGradient(colors: [
+                        Colors.blue.shade400,
+                        Colors.tealAccent,
+                      ]),
                     ),
-                    gradient: LinearGradient(colors: [
-                      Colors.blue.shade400,
-                      Colors.tealAccent,
-                    ]),
                   ),
-                  GradientText(
-                    "Gaikwad",
-                    style: TextStyle(
-                      fontFamily: "Pressstart",
-                      color: Colors.white,
-                      fontSize: 60,
-                      fontWeight: FontWeight.bold,
+                  SlideTransition(
+                    position: _animation2,
+                    child: GradientText(
+                      "Gaikwad",
+                      style: TextStyle(
+                        fontFamily: "Pressstart",
+                        color: Colors.white,
+                        fontSize: 70,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      gradient: LinearGradient(colors: [
+                        Colors.orange.shade400,
+                        Colors.pinkAccent,
+                      ]),
                     ),
-                    gradient: LinearGradient(colors: [
-                      Colors.orange.shade400,
-                      Colors.pinkAccent,
-                    ]),
                   )
                 ],
               ),
               const SizedBox(height: 60),
               Container(
-                decoration: BoxDecoration(boxShadow: [
-                  BoxShadow(
-                      color: Colors.grey.withOpacity(0.14),
-                      offset: Offset(0.0, 0.0),
-                      blurRadius: 30,
-                      spreadRadius: 2)
+                decoration: const BoxDecoration(boxShadow: [
+                  // BoxShadow(
+                  //     color: Colors.grey.withOpacity(0.14),
+                  //     offset: Offset(0.0, 0.0),
+                  //     blurRadius: 30,
+                  //     spreadRadius: 2)
                 ]),
                 width: MediaQuery.of(context).size.width / 1.2,
                 child: const Text(

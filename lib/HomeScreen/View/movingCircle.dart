@@ -21,7 +21,7 @@ class _MovingCircleState extends State<MovingCircle>
     // TODO: implement initState
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(seconds: 20),
+      duration: const Duration(seconds: 14),
       vsync: this,
     )..repeat(reverse: false);
   }
