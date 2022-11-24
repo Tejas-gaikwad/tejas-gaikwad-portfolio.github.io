@@ -111,21 +111,23 @@ class _RowCardState extends State<RowCard> {
                         horizontal: 12, vertical: 10),
                     height: MediaQuery.of(context).size.height / 6,
                     decoration: BoxDecoration(
-                      // color: Colors.grey,
+                      color: Colors.grey,
+                      border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(2.0),
                     ),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/firebase.png",
-                        height: MediaQuery.of(context).size.height / 7,
-                      ),
-                    ),
+                    // child: Align(
+                    //   alignment: Alignment.center,
+                    //   child: Image.asset(
+                    //     "assets/firebase.png",
+                    //     height: MediaQuery.of(context).size.height / 7,
+                    //   ),
+                    // ),
                   ),
                   SizedBox(height: 20),
                   Text(
                     widget.projectName,
-                    style: TextStyle(
+                    style: const TextStyle(
+                        fontFamily: "Patrick",
                         color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.w600),

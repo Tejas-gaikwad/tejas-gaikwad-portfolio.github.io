@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen>
       backgroundColor: const Color(0XFF111010),
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height * 2.8,
+          height: MediaQuery.of(context).size.height * 3.4,
           child: Stack(
             children: [
               Positioned(
@@ -88,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen>
                 child: Contact(),
               ),
               Positioned.fill(
-                top: 2650,
+                top: 2500,
                 left: 10,
                 child: Text(
                   "Made in flutter",

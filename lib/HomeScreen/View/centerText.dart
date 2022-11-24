@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/Constants/onHover.dart';
 import 'package:my_app/HomeScreen/View/rowOfLinks.dart';
-
+import 'dart:js' as js;
 import '../../Constants/gradienttext.dart';
 
 class CenterText extends StatefulWidget {
@@ -113,6 +113,58 @@ class _CenterTextState extends State<CenterText>
           alignment: Alignment.center,
           child: RowOfLinks(),
         ),
+        const SizedBox(height: 60),
+        MouseRegion(
+          onEnter: (f) {
+            setState(() {
+              isHover = true;
+            });
+          },
+          onExit: (f) {
+            setState(() {
+              isHover = false;
+            });
+          },
+          child: InkWell(
+            onTap: () {
+              js.context.callMethod('open',
+                  ['https://www.linkedin.com/in/tejas-gaikwad-216b3a19a/']);
+            },
+            child: AnimatedContainer(
+              curve: Curves.easeIn,
+              margin: EdgeInsets.only(top: isHover ? 0 : 4),
+              alignment: Alignment.center,
+              padding: const EdgeInsets.all(8.0),
+              height: MediaQuery.of(context).size.height * 0.08,
+              width: MediaQuery.of(context).size.width / 6,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.white, width: 1.0),
+                // color: isHover ? Colors.pink : Colors.green,
+                gradient: LinearGradient(
+                  colors: [
+                    isHover ? Colors.blueAccent : Colors.transparent,
+                    isHover ? Colors.pink : Colors.transparent,
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(6.0),
+                // boxShadow: [
+                //   BoxShadow(
+                //       // color: Colors.blue.shade700,
+                //       // color: isHover ? Colors.pink : Colors.green,
+                //       offset: Offset(1.0, 3.0),
+                //       spreadRadius: 0.2,
+                //       blurRadius: 10.0)
+                // ],
+              ),
+              duration: Duration(milliseconds: 200),
+              child: Text(
+                "Resume",
+                style: TextStyle(
+                    color: Colors.white, fontSize: 30, fontFamily: "Patrick"),
+              ),
+            ),
+          ),
+        )
       ],
     );
   }

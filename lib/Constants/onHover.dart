@@ -43,8 +43,8 @@ class _OnHoverState extends State<OnHover> {
         onTap: widget.onTap,
         child: AnimatedContainer(
           padding: const EdgeInsets.all(8.0),
-          height: isHover ? 70 : 50,
-          width: isHover ? 70 : 50,
+          height: isHover ? 60 : 55,
+          width: isHover ? 60 : 55,
           decoration: BoxDecoration(
             color: isHover ? widget.color1 : widget.color2,
             boxShadow: [
