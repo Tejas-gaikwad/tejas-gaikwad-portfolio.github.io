@@ -93,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen>
                 child: Projects(),
               ),
               Positioned.fill(
-                top: width <= 1000 ? 2150 : 1800,
+                top: width <= 1000 ? 2150 : 1950,
                 child: Contact(),
               ),
             ],
