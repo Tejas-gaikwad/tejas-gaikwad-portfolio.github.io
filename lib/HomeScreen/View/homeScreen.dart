@@ -41,12 +41,21 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: const Color(0XFF111010),
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height * 3.4,
+          height: MediaQuery.of(context).size.height * 3.8,
           child: Stack(
             children: [
               Positioned(
@@ -76,26 +85,17 @@ class _HomeScreenState extends State<HomeScreen>
                 child: CenterText(),
               ),
               Positioned.fill(
-                top: 850,
+                top: width <= 1000 ? 950 : 850,
                 child: Technologies(),
               ),
               Positioned.fill(
-                top: 1300,
+                top: width <= 1000 ? 1300 : 1300,
                 child: Projects(),
               ),
               Positioned.fill(
-                top: 1900,
+                top: width <= 1000 ? 2150 : 1800,
                 child: Contact(),
               ),
-              Positioned.fill(
-                top: 2500,
-                left: 10,
-                child: Text(
-                  "Made in flutter",
-                  style: TextStyle(
-                      color: Colors.white.withOpacity(0.2), fontSize: 20),
-                ),
-              )
             ],
           ),
         ),

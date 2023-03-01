@@ -36,6 +36,9 @@ class _CenterTextState extends State<CenterText>
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    print("WIDTH --- " + width.toString());
     return Column(
       // crossAxisAlignment: CrossAxisAlignment.center,
       // mainAxisAlignment: MainAxisAlignment.center,
@@ -46,44 +49,84 @@ class _CenterTextState extends State<CenterText>
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SlideTransition(
-                    position: _animation1,
-                    child: GradientText(
-                      "Tejas ",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: "Pressstart",
-                        fontSize: 70,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      gradient: LinearGradient(colors: [
-                        Colors.blue.shade400,
-                        Colors.tealAccent,
-                      ]),
+              width <= 1000
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SlideTransition(
+                          position: _animation1,
+                          child: GradientText(
+                            "Tejas ",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "Pressstart",
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            gradient: LinearGradient(colors: [
+                              Colors.blue.shade400,
+                              Colors.tealAccent,
+                            ]),
+                          ),
+                        ),
+                        SizedBox(height: 60),
+                        SlideTransition(
+                          position: _animation2,
+                          child: GradientText(
+                            "Gaikwad",
+                            style: TextStyle(
+                              fontFamily: "Pressstart",
+                              color: Colors.white,
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            gradient: LinearGradient(colors: [
+                              Colors.orange.shade400,
+                              Colors.pinkAccent,
+                            ]),
+                          ),
+                        )
+                      ],
+                    )
+                  : Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SlideTransition(
+                          position: _animation1,
+                          child: GradientText(
+                            "Tejas ",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "Pressstart",
+                              fontSize: 70,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            gradient: LinearGradient(colors: [
+                              Colors.blue.shade400,
+                              Colors.tealAccent,
+                            ]),
+                          ),
+                        ),
+                        SlideTransition(
+                          position: _animation2,
+                          child: GradientText(
+                            "Gaikwad",
+                            style: TextStyle(
+                              fontFamily: "Pressstart",
+                              color: Colors.white,
+                              fontSize: 70,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            gradient: LinearGradient(colors: [
+                              Colors.orange.shade400,
+                              Colors.pinkAccent,
+                            ]),
+                          ),
+                        )
+                      ],
                     ),
-                  ),
-                  SlideTransition(
-                    position: _animation2,
-                    child: GradientText(
-                      "Gaikwad",
-                      style: TextStyle(
-                        fontFamily: "Pressstart",
-                        color: Colors.white,
-                        fontSize: 70,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      gradient: LinearGradient(colors: [
-                        Colors.orange.shade400,
-                        Colors.pinkAccent,
-                      ]),
-                    ),
-                  )
-                ],
-              ),
               const SizedBox(height: 60),
               Container(
                 decoration: const BoxDecoration(boxShadow: [
@@ -94,9 +137,9 @@ class _CenterTextState extends State<CenterText>
                   //     spreadRadius: 2)
                 ]),
                 width: MediaQuery.of(context).size.width / 1.2,
-                child: const Text(
+                child: Text(
                   "A Passionate Software Developer, Product creator, FilmMaker, Always eager to learn and make something out of it. ",
-                  textAlign: TextAlign.center,
+                  textAlign: width <= 1000 ? TextAlign.start : TextAlign.center,
                   style: TextStyle(
                     fontFamily: "Pacifico",
                     color: Colors.white60,
@@ -127,19 +170,21 @@ class _CenterTextState extends State<CenterText>
           },
           child: InkWell(
             onTap: () {
-              js.context.callMethod('open',
-                  ['https://www.linkedin.com/in/tejas-gaikwad-216b3a19a/']);
+              js.context.callMethod('open', [
+                'https://drive.google.com/file/d/1R8uSvorlXZjdwg0cXhvoICxhqUyrL3Kr/view?usp=share_link'
+              ]);
             },
             child: AnimatedContainer(
               curve: Curves.easeIn,
               margin: EdgeInsets.only(top: isHover ? 0 : 4),
               alignment: Alignment.center,
               padding: const EdgeInsets.all(8.0),
-              height: MediaQuery.of(context).size.height * 0.08,
+              height: width <= 1000
+                  ? MediaQuery.of(context).size.height * 0.05
+                  : MediaQuery.of(context).size.height * 0.08,
               width: MediaQuery.of(context).size.width / 6,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.white, width: 1.0),
-                // color: isHover ? Colors.pink : Colors.green,
                 gradient: LinearGradient(
                   colors: [
                     isHover ? Colors.blueAccent : Colors.transparent,
@@ -147,20 +192,14 @@ class _CenterTextState extends State<CenterText>
                   ],
                 ),
                 borderRadius: BorderRadius.circular(6.0),
-                // boxShadow: [
-                //   BoxShadow(
-                //       // color: Colors.blue.shade700,
-                //       // color: isHover ? Colors.pink : Colors.green,
-                //       offset: Offset(1.0, 3.0),
-                //       spreadRadius: 0.2,
-                //       blurRadius: 10.0)
-                // ],
               ),
               duration: Duration(milliseconds: 200),
               child: Text(
                 "Resume",
                 style: TextStyle(
-                    color: Colors.white, fontSize: 30, fontFamily: "Patrick"),
+                    color: Colors.white,
+                    fontSize: width <= 1000 ? 15 : 30,
+                    fontFamily: "Patrick"),
               ),
             ),
           ),

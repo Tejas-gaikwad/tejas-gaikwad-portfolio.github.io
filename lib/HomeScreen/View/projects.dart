@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'dart:js' as js;
+import '../../allProjects/allProjects.dart';
 
 class Projects extends StatefulWidget {
   const Projects({super.key});
@@ -16,36 +18,171 @@ class _ProjectsState extends State<Projects> {
     "Drawing App in flutter",
     "Advanced to-do application",
   ];
+
+  List projectsImages = [
+    "assets/instagram.png",
+    "assets/amazon.png",
+    "assets/drawing-app.jpeg",
+    "assets/mern-todo.jpeg",
+  ];
+
+  List projectsLinks = [
+    "https://github.com/Tejas-gaikwad/insta_clone",
+    "https://github.com/Tejas-gaikwad/Amazon-clone-using-nodejs-flutter",
+    "https://github.com/Tejas-gaikwad/custom-painter-app",
+    "https://github.com/Tejas-gaikwad/Todo_app_using_NODEJS_and_mongo-",
+  ];
+
+  bool isHover = false;
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Container(
       // color: Colors.greenAccent,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             "My Projects",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: "Pacifico",
               color: Colors.white60,
               fontWeight: FontWeight.bold,
-              fontSize: 30,
+              fontSize: width <= 1000 ? 15 : 30,
             ),
           ),
           const SizedBox(height: 80),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              RowCard(projectName: projectsName[0]),
-              SizedBox(width: 40),
-              RowCard(projectName: projectsName[1]),
-              SizedBox(width: 40),
-              RowCard(projectName: projectsName[2]),
-              SizedBox(width: 40),
-              RowCard(projectName: projectsName[3]),
-            ],
-          ),
+          width <= 1000
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RowCard(
+                          projectName: projectsName[0],
+                          imageFilePAth: projectsImages[0],
+                          onTap: () {
+                            js.context.callMethod('open', [projectsLinks[0]]);
+                          },
+                        ),
+                        SizedBox(width: 40),
+                        RowCard(
+                          projectName: projectsName[1],
+                          imageFilePAth: projectsImages[1],
+                          onTap: () {
+                            js.context.callMethod('open', [projectsLinks[1]]);
+                          },
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 40),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RowCard(
+                          projectName: projectsName[2],
+                          imageFilePAth: projectsImages[2],
+                          onTap: () {
+                            js.context.callMethod('open', [projectsLinks[2]]);
+                          },
+                        ),
+                        SizedBox(width: 40),
+                        RowCard(
+                          projectName: projectsName[3],
+                          imageFilePAth: projectsImages[3],
+                          onTap: () {
+                            js.context.callMethod('open', [projectsLinks[3]]);
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+              : Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RowCard(
+                      projectName: projectsName[0],
+                      imageFilePAth: projectsImages[0],
+                      onTap: () {
+                        js.context.callMethod('open', [projectsLinks[0]]);
+                      },
+                    ),
+                    SizedBox(width: 40),
+                    RowCard(
+                      projectName: projectsName[1],
+                      imageFilePAth: projectsImages[1],
+                      onTap: () {
+                        js.context.callMethod('open', [projectsLinks[1]]);
+                      },
+                    ),
+                    SizedBox(width: 40),
+                    RowCard(
+                      projectName: projectsName[2],
+                      imageFilePAth: projectsImages[2],
+                      onTap: () {
+                        js.context.callMethod('open', [projectsLinks[5]]);
+                      },
+                    ),
+                    SizedBox(width: 40),
+                    RowCard(
+                      projectName: projectsName[3],
+                      imageFilePAth: projectsImages[3],
+                      onTap: () {
+                        js.context.callMethod('open', [projectsLinks[3]]);
+                      },
+                    ),
+                  ],
+                ),
+          const SizedBox(height: 80),
+          MouseRegion(
+            onEnter: (f) {
+              setState(() {
+                isHover = true;
+              });
+            },
+            onExit: (f) {
+              setState(() {
+                isHover = false;
+              });
+            },
+            child: InkWell(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return AllProjects();
+                  },
+                ));
+              },
+              child: Container(
+                alignment: Alignment.center,
+                color: isHover
+                    ? Color.fromARGB(255, 15, 43, 92)
+                    : Color.fromARGB(255, 15, 43, 92).withOpacity(0.4),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                width: width / 4,
+                child: Text("All Projects",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: "Pacifico",
+                      color: isHover
+                          ? Colors.white
+                          : Colors.white.withOpacity(0.4),
+                      fontWeight: FontWeight.bold,
+                      fontSize: width <= 1000 ? 15 : 30,
+                    )),
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -55,7 +192,8 @@ class _ProjectsState extends State<Projects> {
 class RowCard extends StatefulWidget {
   final onTap;
   final projectName;
-  RowCard({super.key, this.onTap, this.projectName});
+  final imageFilePAth;
+  RowCard({super.key, this.onTap, this.projectName, this.imageFilePAth});
 
   @override
   State<RowCard> createState() => _RowCardState();
@@ -64,8 +202,12 @@ class RowCard extends StatefulWidget {
 class _RowCardState extends State<RowCard> {
   bool isHover = false;
 
+  _RowCardState();
+
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return MouseRegion(
       onEnter: (f) {
         setState(() {
@@ -83,11 +225,13 @@ class _RowCardState extends State<RowCard> {
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
           margin: EdgeInsets.only(top: isHover ? 0 : 10),
           duration: Duration(milliseconds: 200),
-          height: MediaQuery.of(context).size.height / 3,
-          width: MediaQuery.of(context).size.width / 7,
+          height: width <= 1000
+              ? MediaQuery.of(context).size.height / 3
+              : MediaQuery.of(context).size.height / 3,
+          width: width <= 1000
+              ? MediaQuery.of(context).size.width / 4
+              : MediaQuery.of(context).size.width / 7,
           decoration: BoxDecoration(
-            // color: Colors.red,
-            // border: Border.all(color: Colors.greenAccent, width: 1.5),
             borderRadius: BorderRadius.circular(4.0),
             gradient: LinearGradient(
               begin: Alignment.topLeft,
@@ -115,21 +259,23 @@ class _RowCardState extends State<RowCard> {
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(2.0),
                     ),
-                    // child: Align(
-                    //   alignment: Alignment.center,
-                    //   child: Image.asset(
-                    //     "assets/firebase.png",
-                    //     height: MediaQuery.of(context).size.height / 7,
-                    //   ),
-                    // ),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Image.asset(
+                        widget.imageFilePAth == null
+                            ? "assets/amazon.png"
+                            : widget.imageFilePAth,
+                        height: MediaQuery.of(context).size.height / 7,
+                      ),
+                    ),
                   ),
                   SizedBox(height: 20),
                   Text(
                     widget.projectName,
-                    style: const TextStyle(
+                    style: TextStyle(
                         fontFamily: "Patrick",
                         color: Colors.white,
-                        fontSize: 16,
+                        fontSize: width <= 1000 ? 12 : 16,
                         fontWeight: FontWeight.w600),
                   ),
                 ],

@@ -10,6 +10,9 @@ class Contact extends StatefulWidget {
 class _ContactState extends State<Contact> {
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+
     return Column(
       children: [
         Text(
@@ -19,7 +22,7 @@ class _ContactState extends State<Contact> {
             fontFamily: "Pacifico",
             color: Colors.white60,
             fontWeight: FontWeight.bold,
-            fontSize: 30,
+            fontSize: width <= 1000 ? 15 : 30,
           ),
         ),
         SizedBox(height: 80),
@@ -30,6 +33,7 @@ class _ContactState extends State<Contact> {
             ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(16.0)),
               child: Container(
+                alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: Colors.red,
                   borderRadius: BorderRadius.circular(16.0),
@@ -37,7 +41,9 @@ class _ContactState extends State<Contact> {
                 // borderRadius: BorderRadius.circular(16.0),
                 child: Image.asset(
                   "assets/tejas-flutter.jpg",
-                  height: MediaQuery.of(context).size.height / 2,
+                  height: width <= 1000
+                      ? MediaQuery.of(context).size.height / 3
+                      : MediaQuery.of(context).size.height / 2,
                   width: MediaQuery.of(context).size.width / 4,
                   fit: BoxFit.cover,
                 ),
@@ -49,12 +55,12 @@ class _ContactState extends State<Contact> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Hello, My name is Tejas Gaikwad. I am a 2022 graduate from pune university. I am a passionate Mobile app developer. I like to create full stack apps. I have an experience of creating apps from scratch in startup environment. I try to solve real world problems using technology. I have participated in many events and competitions related to technical and non-technical. I follow spirituality to find out the real self. Motorcycle riding is my stress buster.",
+                  Text(
+                    "Hello, My name is Tejas Gaikwad. I am a 2022 graduate from pune university. I am a passionate Software developer.I have an experience of creating apps from scratch in startup environments. I try to solve real world problems using coding. I have been participating in many events and competitions related to technical and non-technical. I am curious about past and future, I have been curious about history and predicting the future. Motorcycle riding is my stress buster.",
                     style: TextStyle(
                         fontFamily: "Patrick",
                         color: Colors.white,
-                        fontSize: 30,
+                        fontSize: width <= 1000 ? 15 : 30,
                         letterSpacing: 3.0),
                   ),
                   const SizedBox(height: 30),
@@ -63,7 +69,7 @@ class _ContactState extends State<Contact> {
                     style: TextStyle(
                         fontFamily: "Patrick",
                         color: Colors.white.withOpacity(0.4),
-                        fontSize: 30,
+                        fontSize: width <= 1000 ? 15 : 30,
                         letterSpacing: 3.0),
                   )
                 ],
