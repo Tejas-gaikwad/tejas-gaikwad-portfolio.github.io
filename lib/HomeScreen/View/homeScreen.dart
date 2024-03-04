@@ -50,27 +50,27 @@ class _HomeScreenState extends State<HomeScreen>
           // height: MediaQuery.of(context).size.height * 3.8,
           child: Stack(
             children: [
-              // const Positioned(
-              //     left: 0,
-              //     top: 10,
-              //     child: MovingCircle(
-              //       color1: Color(0XFF000AFF),
-              //       color2: Color(0XFFFF00D6),
-              //     )),
-              // const Positioned(
-              //     left: 500,
-              //     top: 1100,
-              //     child: MovingCircle(
-              //       color1: Color.fromARGB(255, 132, 183, 14),
-              //       color2: Color.fromARGB(255, 238, 5, 133),
-              //     )),
-              // const Positioned(
-              //     right: 10,
-              //     top: 150,
-              //     child: MovingCircle(
-              //       color1: Color(0XFFC8F029),
-              //       color2: Color(0XFFCE5700),
-              //     )),
+              const Positioned(
+                  left: 0,
+                  top: 10,
+                  child: MovingCircle(
+                    color1: Color(0XFF000AFF),
+                    color2: Color(0XFFFF00D6),
+                  )),
+              const Positioned(
+                  left: 500,
+                  top: 1100,
+                  child: MovingCircle(
+                    color1: Color.fromARGB(255, 132, 183, 14),
+                    color2: Color.fromARGB(255, 238, 5, 133),
+                  )),
+              const Positioned(
+                  right: 10,
+                  top: 150,
+                  child: MovingCircle(
+                    color1: Color(0XFFC8F029),
+                    color2: Color(0XFFCE5700),
+                  )),
               const GlassMorphismWidget(),
 
               Column(
