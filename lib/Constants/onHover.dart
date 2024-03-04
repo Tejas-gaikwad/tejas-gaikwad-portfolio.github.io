@@ -46,6 +46,7 @@ class _OnHoverState extends State<OnHover> {
           height: isHover ? 60 : 55,
           width: isHover ? 60 : 55,
           decoration: BoxDecoration(
+            border: Border.all(color: Colors.white),
             color: isHover ? widget.color1 : widget.color2,
             boxShadow: [
               BoxShadow(

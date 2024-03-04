@@ -31,53 +31,69 @@ class _RowOfLinksState extends State<RowOfLinks>
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SlideAnimationWidget(
-          duration: 600,
-          child: OnHover(
-            onTap: () {
-              js.context.callMethod('open',
-                  ['https://www.linkedin.com/in/tejas-gaikwad-216b3a19a/']);
-            },
-            color1: Color.fromARGB(255, 5, 76, 146),
-            color2: Colors.transparent,
-            textImage: "assets/linkedin.png",
-            // ),
+    return SizedBox(
+      width: width > 700 ? width / 2 : width,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          SlideAnimationWidget(
+            duration: 600,
+            child: OnHover(
+              onTap: () {
+                js.context.callMethod('open',
+                    ['https://www.linkedin.com/in/tejas-gaikwad-216b3a19a/']);
+              },
+              color1: const Color.fromARGB(255, 5, 76, 146),
+              color2: Colors.transparent,
+              textImage: "assets/linkedin.png",
+              // ),
+            ),
           ),
-        ),
-        SizedBox(width: 60),
-        SlideAnimationWidget(
-          duration: 800,
-          child: OnHover(
-            onTap: () {
-              js.context
-                  .callMethod('open', ['https://github.com/tejas-gaikwad']);
-            },
-            color1: Colors.purple.shade600,
-            color2: Colors.transparent,
-            textImage: "assets/github.png",
-            // ),
+          // SizedBox(width: 60),
+          SlideAnimationWidget(
+            duration: 800,
+            child: OnHover(
+              onTap: () {
+                js.context
+                    .callMethod('open', ['https://github.com/tejas-gaikwad']);
+              },
+              color1: Colors.purple.shade600,
+              color2: Colors.transparent,
+              textImage: "assets/github.png",
+              // ),
+            ),
           ),
-        ),
-        SizedBox(width: 60),
-        SlideAnimationWidget(
-          duration: 1000,
-          child: OnHover(
-            onTap: () {
-              js.context.callMethod('open', [
-                'https://twitter.com/tejasg0504?t=NWQ60EadFB82bNt37xE1og&s=08'
-              ]);
-            },
-            color1: Color.fromARGB(255, 78, 159, 226),
-            color2: Colors.transparent,
-            textImage: "assets/twitter.png",
-            // ),
+          // SizedBox(width: 60),
+          SlideAnimationWidget(
+            duration: 1000,
+            child: OnHover(
+              onTap: () {
+                js.context.callMethod('open', [
+                  'https://twitter.com/tejasg0504?t=NWQ60EadFB82bNt37xE1og&s=08'
+                ]);
+              },
+              color1: const Color.fromARGB(255, 78, 159, 226),
+              color2: Colors.transparent,
+              textImage: "assets/twitter.png",
+              // ),
+            ),
           ),
-        ),
-      ],
+          // SizedBox(width: 60),
+          SlideAnimationWidget(
+            duration: 1000,
+            child: OnHover(
+              onTap: () {
+                js.context
+                    .callMethod('open', ['https://medium.com/@tejasg4646']);
+              },
+              color1: const Color.fromARGB(255, 78, 159, 226),
+              color2: Colors.transparent,
+              textImage: "assets/medium_logo.png",
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
