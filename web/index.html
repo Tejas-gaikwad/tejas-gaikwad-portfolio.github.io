@@ -38,6 +38,25 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCEJWWcMCMIUis0ovUTyHSBIYdgM0OjUac",
+      authDomain: "tejas-portfolio-ee939.firebaseapp.com",
+      projectId: "tejas-portfolio-ee939",
+      storageBucket: "tejas-portfolio-ee939.appspot.com",
+      messagingSenderId: "113666434681",
+      appId: "1:113666434681:web:94e38466100f3abe8056a8"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+  </script>
 </head>
 <body>
   <script>

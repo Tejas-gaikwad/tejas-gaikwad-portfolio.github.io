@@ -1,9 +1,20 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'HomeScreen/View/glassmorphism.dart';
 import 'HomeScreen/View/homeScreen.dart';
 import 'HomeScreen/View/movingCircle.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+        apiKey: "AIzaSyCEJWWcMCMIUis0ovUTyHSBIYdgM0OjUac",
+        authDomain: "tejas-portfolio-ee939.firebaseapp.com",
+        projectId: "tejas-portfolio-ee939",
+        storageBucket: "tejas-portfolio-ee939.appspot.com",
+        messagingSenderId: "113666434681",
+        appId: "1:113666434681:web:94e38466100f3abe8056a8"),
+  );
   runApp(const MyApp());
 }
 
